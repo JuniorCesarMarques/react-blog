@@ -1,0 +1,13 @@
+.container {
+    background: #333;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container p {
+    text-transform: uppercase;
+    color: white;
+    font-size: 30px;
+}
