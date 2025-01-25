@@ -6,15 +6,15 @@ import Register from "./components/pages/user/Register";
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/react-blog",
+      path: "/",
       element: <Layout />,
       children: [
         {
-          path: "login",
+          path: "/login",
           element: <Login />,
         },
         {
-          path: "register",
+          path: "/register",
           element: <Register />,
         },
       ],
