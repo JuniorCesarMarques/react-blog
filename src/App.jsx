@@ -6,7 +6,7 @@ import Register from "./components/pages/user/Register";
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "react-blog",
       element: <Layout />,
       children: [
         {
