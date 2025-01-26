@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import useFlashMessage from "./useFlashMessage";
 
 export default function useAuth() {
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState("unauthenticated");
   const navigate = useNavigate();
   const { setFlashMessage } = useFlashMessage();
   const [loading, setLoading] = useState(true);
@@ -14,21 +14,20 @@ export default function useAuth() {
     const token = localStorage.getItem("token");
 
     if (token) {
-
       api.defaults.headers.authorization = `Bearer ${token}`;
-      
+
       api
         .get("/auth/checkuser")
         .then((response) => {
-          console.log(response);
-          setAuthenticated(true);
+          response.data.currentUser.role === "admin"
+            ? setAuthenticated("admin")
+            : setAuthenticated("user");
         })
         .catch((err) => {
           console.log(err.response.data.message);
-          localStorage.removeItem("token");  // Remove o token em caso de erro
-          setAuthenticated(false);
+          localStorage.removeItem("token"); // Remove o token em caso de erro
+          setAuthenticated("unauthenticated");
         });
-
     }
 
     setLoading(false);
@@ -52,22 +51,27 @@ export default function useAuth() {
   }
 
   function authUser(data) {
-    setAuthenticated(true);
+
+    if(data.role === "admin") {
+      setAuthenticated("admin");
+    } else {
+      setAuthenticated("user");
+    }
 
     localStorage.setItem("token", data.token);
 
-    navigate("/");
+    navigate("/react-blog");
   }
 
   function logout() {
     const msgText = "Logout realizado com sucesso!";
     const msgType = "success";
 
-    setAuthenticated(false);
+    setAuthenticated("unauthenticated");
     localStorage.removeItem("token");
 
     api.defaults.headers.authorization = undefined;
-    navigate("/");
+    navigate("/react-blog");
 
     setFlashMessage(msgText, msgType);
   }
