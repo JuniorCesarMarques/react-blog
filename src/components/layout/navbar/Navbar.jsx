@@ -1,37 +1,48 @@
-import { useContext } from "react";
-import { Context } from "../../../context/UserContext";
 import styles from "./Navbar.module.css";
+
+import { IoMenuSharp } from "react-icons/io5";
+import { FaArrowRight } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
-  const { authenticated, logout } = useContext(Context);
-  console.log(authenticated)
+import { motion } from "framer-motion";
 
+const Navbar = ({ handleMenuToggle, isOpen }) => {
   return (
     <nav className={styles.container}>
-      <ul>
+      <span>Brothers</span>
+
+      <ul className={styles.options_menu}>
+        <li>Artigos</li>
+        <li>Videos</li>
+        <li>Loja</li>
+      </ul>
+
+      <ul className={styles.auth_menu}>
         <li>
-          <Link to="/react-blog">Notícias</Link>
+          <Link to="register">Cadastrar</Link>
         </li>
+        <li className={styles.login_button}>
+          <Link to="login">Entrar</Link>
+          <FaArrowRight />
+        </li>
+      </ul>
+
+      <IoMenuSharp
+        className={styles.menu_hamburguer}
+        onClick={handleMenuToggle}
+      />
+
+      <motion.ul
+        className={styles.mobile_options_menu}
+        initial={{right: "-100%"}} 
+        animate={isOpen ? { right: "0" } : { right: "-100%" }} 
+        transition={{ duration: 0.4 }}
+      >
         <li>Artigos</li>
         <li>Vídeos</li>
         <li>Loja</li>
-        <li>Anuncie conosco</li>
-      </ul>
-      <div className={styles.auth_container}>
-        {authenticated === "unauthenticated" && (
-          <Link to="register">
-            <p>Criar conta</p>
-          </Link>
-        )}
-        {authenticated === "unauthenticated" ? (
-          <Link to="login">
-            <p>Entrar</p>
-          </Link>
-        ) : (
-          <p onClick={() => logout()}>Sair</p>
-        )}
-      </div>
+      </motion.ul>
     </nav>
   );
 };

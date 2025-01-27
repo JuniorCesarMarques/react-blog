@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 
-import { Context } from "../../../context/UserContext";
-import UserForm from '../../form/UserForm';
+import { Context } from "../../../../context/UserContext";
+import UserForm from '../../../form/user-form/UserForm';
 
 const Login = () => {
 
@@ -19,7 +19,6 @@ const Login = () => {
 
   return (
     <>
-    <h1>Entrar</h1>
     <UserForm btnText="Entrar" handleSubmit={handleSubmit} handleChange={handleChange}/>
     </>
   )

@@ -1,13 +1,19 @@
 .container {
-    background: #333;
-    height: 60px;
+    font-size: var(--font-size);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: start;
+    padding: 0 20px;
+    font-family: "Poppins", serif;
+    color: white;
+    text-transform: uppercase;
+    background: var(--main-color);
+    position: relative;
+    overflow: hidden;
 }
 
-.container p {
-    text-transform: uppercase;
-    color: white;
-    font-size: 30px;
+.auth_container ul {
+    list-style: none;
+    display: flex;
+    gap: 10px;
 }

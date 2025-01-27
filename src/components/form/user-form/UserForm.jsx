@@ -1,8 +1,10 @@
-import Input from "./Input";
+import Input from "../Input";
+
+import styles from "./Userform.module.css";
 
 const UserForm = ({ btnText, handleChange, handleSubmit, confirmPassword }) => {
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.container} onSubmit={handleSubmit}>
       <Input
         type="name"
         name="name"
