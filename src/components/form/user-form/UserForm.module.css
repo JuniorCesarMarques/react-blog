@@ -1,3 +1,35 @@
 .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 2rem;
+    background: var(--white-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+    font-family: "Poppins", serif;
+    width: 400px;
+  }
+  
+  .container input[type="submit"] {
+    background-color: var(--main-color);
     color: var(--white-color);
-}
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-size: var(--font-size);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .container input[type="submit"]:hover {
+    background-color: var(--third-color); /* Cor ao passar o mouse */
+  }
+  
+  .container input[type="submit"]:active {
+    background-color: var(--secondary-color); /* Cor ao clicar */
+    transform: scale(0.98); /* Leve contração ao clicar */
+  }
+  
