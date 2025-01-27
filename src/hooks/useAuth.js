@@ -60,7 +60,7 @@ export default function useAuth() {
 
     localStorage.setItem("token", data.token);
 
-    navigate("/react-blog");
+    navigate("/");
   }
 
   function logout() {
@@ -71,7 +71,7 @@ export default function useAuth() {
     localStorage.removeItem("token");
 
     api.defaults.headers.authorization = undefined;
-    navigate("/react-blog");
+    navigate("/");
 
     setFlashMessage(msgText, msgType);
   }
