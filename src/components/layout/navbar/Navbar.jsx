@@ -13,9 +13,9 @@ const Navbar = ({ handleMenuToggle, isOpen }) => {
       <span>Brothers</span>
 
       <ul className={styles.options_menu}>
-        <li>Artigos</li>
-        <li>Videos</li>
-        <li>Loja</li>
+        <li><Link to="/">Artigos</Link></li>
+        <li><Link to="videos">Videos</Link></li>
+        <li><Link to="store">Loja</Link></li>
       </ul>
 
       <ul className={styles.auth_menu}>

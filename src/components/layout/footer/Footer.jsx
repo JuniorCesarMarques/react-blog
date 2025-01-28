@@ -1,5 +1,7 @@
 import styles from './Footer.module.css';
 
+import { Link } from "react-router-dom";
+
 import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa";
@@ -14,7 +16,9 @@ const Footer = () => {
         <p className={styles.copyright}>Copyright &copy; {year} Brothers Loucos por Adrenalina. Todos os direitos reservados.</p>
         <div className={styles.policy_container}>
           <p>Termos de seviço</p>
-          <p>Políticas de privacidade</p>
+          <Link to="privacy-policy">
+            <p>Política de privacidade</p>
+          </Link>
         </div>
         <div className={styles.social_media}>
           <FaInstagram />
