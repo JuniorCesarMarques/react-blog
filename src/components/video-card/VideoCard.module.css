@@ -1,0 +1,26 @@
+.container {
+  width: 300px;
+  font-family: "Inter", serif;
+  cursor: pointer;
+}
+
+.video_container {
+  position: relative;
+}
+
+.container svg {
+  position: absolute; 
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  font-size: 70px;
+  color: red;
+}
+
+.container img {
+  width: 300px;
+}
+
+.container p {
+    color: var(--white-color);
+}

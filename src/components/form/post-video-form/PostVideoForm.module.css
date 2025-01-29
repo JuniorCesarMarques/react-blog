@@ -1,0 +1,10 @@
+.container {
+    background: var(--white-color);
+    width: 400px;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    font-family: "Poppins", serif;
+}

@@ -3,6 +3,8 @@ import UserForm from "../../../form/user-form/UserForm";
 import { useState, useContext } from "react";
 import { Context } from "../../../../context/UserContext";
 
+import styles from "./Register.module.css";
+
 const Register = () => {
   const { register } = useContext(Context);
   const [user, setUser] = useState({});
@@ -17,14 +19,14 @@ const Register = () => {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <UserForm
         btnText={"Cadastrar"}
         handleSubmit={handleSubmit}
         handleChange={handleChange}
-        confirmPassword
+        type="register"
       />
-    </>
+    </div>
   );
 };
 

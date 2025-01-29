@@ -1,37 +1,31 @@
 import api from "../utils/api";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useFlashMessage from "./useFlashMessage";
+import { useSession } from "./useSession";
 
 export default function useAuth() {
   const [authenticated, setAuthenticated] = useState("unauthenticated");
   const navigate = useNavigate();
   const { setFlashMessage } = useFlashMessage();
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
+  const [userData, setUserData] = useState(() => {
+    const storedUser = localStorage.getItem("userData");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
-    if (token) {
-      api.defaults.headers.authorization = `Bearer ${token}`;
+  useSession();
+  console.log(userData);
 
-      api
-        .get("/auth/checkuser")
-        .then((response) => {
-          response.data.currentUser.role === "admin"
-            ? setAuthenticated("admin")
-            : setAuthenticated("user");
-        })
-        .catch((err) => {
-          console.log(err.response.data.message);
-          localStorage.removeItem("token"); // Remove o token em caso de erro
-          setAuthenticated("unauthenticated");
-        });
-    }
+  const handleGoogleLogin = (user) => {
 
-    setLoading(false);
-  }, []);
+    setUserData(user);
+
+    localStorage.setItem("userData", JSON.stringify(user));
+    setAuthenticated("authenticated");
+    navigate("/")
+  };
 
   async function register(user) {
     let msgText = "Cadastro realizado com sucesso";
@@ -51,8 +45,7 @@ export default function useAuth() {
   }
 
   function authUser(data) {
-
-    if(data.role === "admin") {
+    if (data.role === "admin") {
       setAuthenticated("admin");
     } else {
       setAuthenticated("user");
@@ -69,6 +62,9 @@ export default function useAuth() {
 
     setAuthenticated("unauthenticated");
     localStorage.removeItem("token");
+
+    setUserData(null);
+    localStorage.removeItem("userData");
 
     api.defaults.headers.authorization = undefined;
     navigate("/");
@@ -92,5 +88,5 @@ export default function useAuth() {
     setFlashMessage(msgText, msgType);
   }
 
-  return { register, authenticated, logout, login };
+  return { register, authenticated, logout, login, handleGoogleLogin };
 }

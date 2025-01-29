@@ -5,7 +5,7 @@ import Layout from "./components/layout/Layout";
 import Login from "./components/pages/user/login/Login";
 import Register from "./components/pages/user/register/Register";
 import Posts from "./components/pages/posts/posts"
-import Videos from "./components/pages/posts/Videos";
+import Videos from "./components/pages/posts/videos/Videos";
 import Store from "./components/pages/posts/Store";
 import PrivacyPolicy from "./components/pages/PrivacyPolicy";
 

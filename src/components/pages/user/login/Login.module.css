@@ -1,0 +1,33 @@
+.container {
+  background: var(--white-color);
+  font-family: "Poppins", serif;
+  width: 400px;
+  padding: 20px;
+  margin: 0 auto;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.google_login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.google_login span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.google_login span::before,
+.google_login span::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 150px;
+  background: gray;
+}
