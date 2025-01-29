@@ -1,7 +1,7 @@
-import UserForm from "../../../form/user-form/UserForm";
+import UserForm from "../../../components/form/user-form/UserForm";
 
 import { useState, useContext } from "react";
-import { Context } from "../../../../context/UserContext";
+import { Context } from "../../../context/UserContext";
 
 import styles from "./Register.module.css";
 

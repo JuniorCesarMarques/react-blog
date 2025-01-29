@@ -2,13 +2,13 @@ import styles from "./Videos.module.css";
 
 import { useContext } from "react";
 
-import VideoCard from "../../../video-card/VideoCard";
-import PostVideoForm from "../../../form/post-video-form/PostVideoForm";
-import { Context } from "../../../../context/UserContext";
+import VideoCard from "../../../components/video-card/VideoCard";
+import PostVideoForm from "../../../components/form/post-video-form/PostVideoForm";
+import { Context } from "../../../context/UserContext";
 
 // Thumbs
-import thumbOnix from "../../../../assets/thumbnails/onix.jpg";
-import thumbFz25 from "../../../../assets/thumbnails/fz25.jpg";
+import thumbOnix from "../../../assets/thumbnails/onix.jpg";
+import thumbFz25 from "../../../assets/thumbnails/fz25.jpg";
 
 const videos = [
   {

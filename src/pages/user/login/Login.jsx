@@ -3,8 +3,8 @@ import React, { useContext, useState } from "react";
 // css
 import styles from "./Login.module.css";
 
-import { Context } from "../../../../context/UserContext";
-import UserForm from "../../../form/user-form/UserForm";
+import { Context } from "../../../context/UserContext";
+import UserForm from "../../../components/form/user-form/UserForm";
 
 // libs
 import { GoogleLogin } from "@react-oauth/google";

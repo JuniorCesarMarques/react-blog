@@ -7,6 +7,7 @@
     max-width: 60%;
     margin: 1em auto;
     border-radius: 5px;
+    background: var(--black-color);
   }
   
   .success {
