@@ -6,24 +6,26 @@ import useFlashMessage from "./useFlashMessage";
 import { useSession } from "./useSession";
 
 export default function useAuth() {
-  const [authenticated, setAuthenticated] = useState("unauthenticated");
   const navigate = useNavigate();
   const { setFlashMessage } = useFlashMessage();
 
-  const [userData, setUserData] = useState(() => {
+  const [googleUserData, setGoogleUserData] = useState(() => {
     const storedUser = localStorage.getItem("userData");
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
-  useSession();
-  console.log(userData);
+  const { authenticated, setAuthenticated } = useSession();
+  
+  console.log(googleUserData);
 
   const handleGoogleLogin = (user) => {
 
-    setUserData(user);
+    setGoogleUserData(user);
 
     localStorage.setItem("userData", JSON.stringify(user));
-    setAuthenticated("authenticated");
+
+    setAuthenticated("user");
+
     navigate("/")
   };
 
@@ -88,5 +90,5 @@ export default function useAuth() {
     setFlashMessage(msgText, msgType);
   }
 
-  return { register, authenticated, logout, login, handleGoogleLogin };
+  return { register, authenticated, logout, login, handleGoogleLogin, googleUserData };
 }

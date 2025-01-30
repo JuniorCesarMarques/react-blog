@@ -1,7 +1,8 @@
-import {  useEffect } from "react";
+import { useState, useEffect } from "react";
 import api from "../utils/api";
 
 export function useSession() {
+  const [authenticated, setAuthenticated] = useState("unauthenticated");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -22,7 +23,8 @@ export function useSession() {
           setAuthenticated("unauthenticated");
         });
     }
-
+    
   }, []);
 
+  return { authenticated, setAuthenticated };
 }
