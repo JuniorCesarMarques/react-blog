@@ -9,8 +9,8 @@ export function useSession() {
     const googleToken = localStorage.getItem("googleToken");
 
     const authHeader = googleToken
-      ? `Bearer ${JSON.parse(googleToken)}`
-      : `Bearer ${JSON.parse(token)}`;
+      ? `Bearer ${googleToken}`
+      : `Bearer ${token}`;
     const tokenType = googleToken ? "google" : "jwt";
 
     if (token || googleToken) {

@@ -24,7 +24,7 @@ export default function useAuth() {
 
     setGoogleUserData(user);
 
-    localStorage.setItem("googleToken", JSON.stringify(credentialResponse.credential));
+    localStorage.setItem("googleToken", credentialResponse.credential);
     localStorage.setItem("userData", JSON.stringify(user));
 
     setAuthenticated("user");

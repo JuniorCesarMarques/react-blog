@@ -12,8 +12,8 @@ const Layout = () => {
   return (
     <UserProvider>
       <Header />
-      <Message />
       <div className={styles.content_container}>
+        <Message />
         <Outlet />
       </div>
       <Footer />
