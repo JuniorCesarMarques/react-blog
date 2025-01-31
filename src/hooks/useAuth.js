@@ -18,8 +18,6 @@ export default function useAuth() {
 
   const { authenticated, setAuthenticated } = useSession();
   
-  console.log(googleUserData);
-
   const handleGoogleLogin = (credentialResponse) => {
 
     const user = jwtDecode(credentialResponse.credential);
@@ -27,6 +25,7 @@ export default function useAuth() {
     setGoogleUserData(user);
 
     localStorage.setItem("googleToken", JSON.stringify(credentialResponse.credential));
+    localStorage.setItem("userData", JSON.stringify(user));
 
     setAuthenticated("user");
 
@@ -62,6 +61,7 @@ export default function useAuth() {
     navigate("/");
   }
 
+  //Precisa remover o googletoken
   function logout() {
     const msgText = "Logout realizado com sucesso!";
     const msgType = "success";
@@ -70,7 +70,7 @@ export default function useAuth() {
     localStorage.removeItem("token");
 
     setGoogleUserData(null);
-    localStorage.removeItem("userData");
+    localStorage.removeItem("googleToken");
 
     api.defaults.headers.authorization = undefined;
     navigate("/");

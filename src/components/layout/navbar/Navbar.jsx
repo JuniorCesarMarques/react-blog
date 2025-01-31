@@ -12,11 +12,16 @@ import { useContext } from "react";
 import { Context } from "../../../context/UserContext";
 
 const Navbar = ({ handleMenuToggle, isOpen }) => {
-  const { authenticated, logout } = useContext(Context);
+  const { authenticated, logout, googleUserData } = useContext(Context);
+
+  const profilePicture = googleUserData.picture;
 
   return (
     <nav className={styles.container}>
-      <span>Brothers</span>
+      <div className={styles.logo_container}>
+        <img src={profilePicture} alt="foto do perfil" />
+        <span>Brothers</span>
+      </div>
 
       <ul className={styles.options_menu}>
         <li>
@@ -31,9 +36,11 @@ const Navbar = ({ handleMenuToggle, isOpen }) => {
       </ul>
 
       <ul className={styles.auth_menu}>
-        {authenticated === "unauthenticated" && <li>
-          <Link to="register">Criar conta</Link>
-        </li>}
+        {authenticated === "unauthenticated" && (
+          <li>
+            <Link to="register">Criar conta</Link>
+          </li>
+        )}
 
         {authenticated === "unauthenticated" ? (
           <li className={styles.login_button}>
