@@ -6,9 +6,16 @@ export function useSession() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const googleToken = localStorage.getItem("googleToken");
 
-    if (token) {
-      api.defaults.headers.authorization = `Bearer ${token}`;
+    const authHeader = googleToken
+      ? `Bearer ${JSON.parse(googleToken)}`
+      : `Bearer ${JSON.parse(token)}`;
+    const tokenType = googleToken ? "google" : "jwt";
+
+    if (token || googleToken) {
+      api.defaults.headers.authorization = authHeader;
+      api.defaults.headers.tokenType = tokenType
 
       api
         .get("/auth/checkuser")
@@ -19,11 +26,10 @@ export function useSession() {
         })
         .catch((err) => {
           console.log(err.response.data.message);
-          localStorage.removeItem("token"); // Remove o token em caso de erro
+          localStorage.removeItem(token ? "token" : "googleToken"); // Remove o token em caso de erro
           setAuthenticated("unauthenticated");
         });
     }
-    
   }, []);
 
   return { authenticated, setAuthenticated };

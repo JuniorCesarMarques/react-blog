@@ -8,7 +8,6 @@ import UserForm from "../../../components/form/user-form/UserForm";
 
 // libs
 import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   const { login, handleGoogleLogin } = useContext(Context);
@@ -35,8 +34,7 @@ const Login = () => {
         <span>Ou</span>
         <GoogleLogin
           onSuccess={(credentialResponse) => {
-            const user = jwtDecode(credentialResponse.credential);
-            handleGoogleLogin(user);
+            handleGoogleLogin(credentialResponse);
           }}
           onError={() => console.log("Login failed")}
         />

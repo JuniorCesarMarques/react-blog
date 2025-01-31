@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import useFlashMessage from "./useFlashMessage";
 import { useSession } from "./useSession";
 
+import { jwtDecode } from "jwt-decode";
+
 export default function useAuth() {
   const navigate = useNavigate();
   const { setFlashMessage } = useFlashMessage();
@@ -18,11 +20,13 @@ export default function useAuth() {
   
   console.log(googleUserData);
 
-  const handleGoogleLogin = (user) => {
+  const handleGoogleLogin = (credentialResponse) => {
+
+    const user = jwtDecode(credentialResponse.credential);
 
     setGoogleUserData(user);
 
-    localStorage.setItem("userData", JSON.stringify(user));
+    localStorage.setItem("googleToken", JSON.stringify(credentialResponse.credential));
 
     setAuthenticated("user");
 
@@ -65,7 +69,7 @@ export default function useAuth() {
     setAuthenticated("unauthenticated");
     localStorage.removeItem("token");
 
-    setUserData(null);
+    setGoogleUserData(null);
     localStorage.removeItem("userData");
 
     api.defaults.headers.authorization = undefined;

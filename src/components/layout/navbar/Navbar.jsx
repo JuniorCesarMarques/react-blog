@@ -42,7 +42,7 @@ const Navbar = ({ handleMenuToggle, isOpen }) => {
           </li>
         ) : (
           <li className={styles.login_button}>
-            <Link onClick={logout}>Sair</Link>
+            <span onClick={logout}>Sair</span>
             <CiLogout />
           </li>
         )}
