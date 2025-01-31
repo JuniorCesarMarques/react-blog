@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import api from "../utils/api";
 
 export function useSession() {
-  const [authenticated, setAuthenticated] = useState(null);
+  const [authenticated, setAuthenticated] = useState(localStorage.getItem("token") || localStorage.getItem("googleToken") || null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");

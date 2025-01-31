@@ -66,7 +66,7 @@ export default function useAuth() {
     const msgText = "Logout realizado com sucesso!";
     const msgType = "success";
 
-    setAuthenticated("unauthenticated");
+    setAuthenticated(null);
     localStorage.removeItem("token");
 
     setGoogleUserData(null);

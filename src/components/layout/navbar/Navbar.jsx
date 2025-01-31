@@ -38,13 +38,13 @@ const Navbar = ({ handleMenuToggle, isOpen }) => {
       </ul>
 
       <ul className={styles.auth_menu}>
-        {authenticated === "unauthenticated" && (
+        {authenticated === null && (
           <li>
             <Link to="register">Criar conta</Link>
           </li>
         )}
 
-        {authenticated === "unauthenticated" ? (
+        {authenticated === null ? (
           <li className={styles.login_button}>
             <Link to="login">Entrar</Link>
             <FaArrowRight />
