@@ -71,6 +71,7 @@ export default function useAuth() {
 
     setGoogleUserData(null);
     localStorage.removeItem("googleToken");
+    localStorage.removeItem("userData");
 
     api.defaults.headers.authorization = undefined;
     navigate("/");

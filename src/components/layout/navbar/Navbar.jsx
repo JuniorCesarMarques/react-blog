@@ -14,12 +14,14 @@ import { Context } from "../../../context/UserContext";
 const Navbar = ({ handleMenuToggle, isOpen }) => {
   const { authenticated, logout, googleUserData } = useContext(Context);
 
-  const profilePicture = googleUserData.picture;
+  const profilePicture = googleUserData?.picture;
 
   return (
     <nav className={styles.container}>
       <div className={styles.logo_container}>
-        <img src={profilePicture} alt="foto do perfil" />
+        {googleUserData?.picture && (
+          <img src={profilePicture} alt="foto do perfil" />
+        )}
         <span>Brothers</span>
       </div>
 
